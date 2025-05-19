@@ -1,0 +1,12 @@
+{
+  "name": "telegram-autostart-bot",
+  "version": "1.0.0",
+  "description": "Bot Telegram yang auto-start di Termux dan menerima perintah shell",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Anon",
+  "license": "MIT",
+  "dependencies": {}
+}
